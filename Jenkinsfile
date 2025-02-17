@@ -49,7 +49,7 @@ pipeline {
         stage('Deployment Image to Update') {
             steps {
                 script {
-                    // Kubernetes에서 이미 배포된 Deployment의 이미지를 업데이트
+                    // Deployment 이미지를 Kubenetes에 배포
                     sh "kubectl set image deployment/demo-app-team5-jhk-deployment demo-app-team5-jhk=${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} --namespace=${NAMESPACE}"
                 }
             }
