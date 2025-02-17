@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         REGISTRY = "k8s-vga-worker1:5000"
-        IMAGE_NAME = "team5-demo-app-jhk"
+        IMAGE_NAME = "demo-img-team5-jhk"
         IMAGE_TAG = "latest"
         NAMESPACE = "under76-test"
     }
