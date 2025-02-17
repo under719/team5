@@ -42,7 +42,7 @@ pipeline {
             steps {
                 script {
                     // Kubernetes Deployment and Service 적용 (demo-app.yaml)
-                    sh "kubectl apply -f ./yaml/demo-app -n ${NAMESPACE}"
+                    sh "kubectl apply -f ./yaml/demo-app.yaml -n ${NAMESPACE}"
                 }
             }
         }
