@@ -50,7 +50,7 @@ pipeline {
             steps {
                 script {
                     // Kubernetes에서 이미 배포된 Deployment의 이미지를 업데이트
-                    sh "kubectl set image deployment/springboot-app-team5-jhk springboot-app-team5-jhk=${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} --namespace=${NAMESPACE}"
+                    sh "kubectl set image deployment/demo-deployment demo-app-team5-jhk=${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} --namespace=${NAMESPACE}"
                 }
             }
         }
