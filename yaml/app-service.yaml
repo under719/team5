@@ -1,1 +1,15 @@
-
+# app-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-app-team5-jhk
+  namespace: under76-test
+spec:
+  selector:
+    app: springboot-app-team5-jhk
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 30222
+  type: NodePort
