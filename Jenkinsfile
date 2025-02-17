@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Git 저장소에서 소스 코드 체크아웃
+                // Git 저장소에서 소스 코드 체크아웃 (branch 지정 master 또는 main)
                 git branch: 'main', url: 'https://github.com/under719/team5.git'
             }
         }
@@ -41,6 +41,23 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
+                    // Kubernetes 배포 파일 적용 (app-deployment.yaml)
+                    sh "kubectl apply -f ./yaml/app-deployment.yaml -n ${NAMESPACE}"
+                }
+            }
+        }
+        stage('Service to Create or Update') {
+            steps {
+                script {
+                    // 서비스파일(app-service.yaml)을 적용하여 서비스를 생성하거나 업데이트
+                    sh "kubectl apply -f ./yaml/app-service.yaml -n ${NAMESPACE}"
+                }
+            }
+        }
+        stage('Deployment Image to Update') {
+            steps {
+                script {
+                    // Kubernetes에서 이미 배포된 Deployment의 이미지를 업데이트
                     sh "kubectl set image deployment/springboot-app-team5-jhk springboot-app-team5-jhk=${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} --namespace=${NAMESPACE}"
                 }
             }
