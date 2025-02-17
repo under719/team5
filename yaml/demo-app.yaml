@@ -8,14 +8,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: springboot-app-team5-jhk
+      app: demo-app-team5-jhk
   template:
     metadata:
       labels:
-        app: springboot-app-team5-jhk
+        app: demo-app-team5-jhk
     spec:
       containers:
-      - name: springboot-app-team5-jhk
+      - name: demo-app-team5-jhk
         image: k8s-vga-worker1:5000/team5-demo-app-jhk
         imagePullPolicy: Always #IfNotPresent
         ports:
@@ -28,7 +28,7 @@ metadata:
   namespace: under76-test
 spec:
   selector:
-    app: springboot-app-team5-jhk
+    app: demo-app-team5-jhk
   ports:
     - protocol: TCP
       port: 80
