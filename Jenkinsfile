@@ -9,13 +9,17 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                // Git 저장소에서 소스 코드 체크아웃
                 git branch: 'main', url: 'https://github.com/under719/team5.git'
             }
         }
         stage('Build with Gradle') {
             steps {
                 script {
-                    sh './gradlew clean build -x test'
+                    // Gradle 실행권한
+                    sh 'chmod +x ./gradlew'
+                    // Gradle 빌드 실행
+                    sh './gradlew clean build'
                 }
             }
         }
@@ -29,6 +33,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
+                    // Docker 이미지를 Registry Server에 푸시
                     sh "docker push ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
                 }
             }
