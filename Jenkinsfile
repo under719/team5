@@ -41,6 +41,22 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
+                    // Kubernetes 배포 파일 적용 (app-deployment.yaml)
+                    sh "kubectl apply -f ./yaml/app-deployment.yaml -n ${NAMESPACE}"
+                }
+            }
+        }
+        stage('Service to Create or Update') {
+            steps {
+                script {
+                    // 서비스파일(app-service.yaml)을 적용하여 서비스를 생성하거나 업데이트
+                    sh "kubectl apply -f ./yaml/app-service.yaml -n ${NAMESPACE}"
+                }
+            }
+        }
+        stage('Deployment Image to Update') {
+            steps {
+                script {
                     sh "kubectl set image deployment/springboot-app-team5-jhk springboot-app-team5-jhk=${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} --namespace=${NAMESPACE}"
                 }
             }
