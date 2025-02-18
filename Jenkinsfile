@@ -20,6 +20,8 @@ pipeline {
                     sh 'chmod +x ./gradlew'
                     // Gradle 빌드 실행
                     sh './gradlew clean build'
+                    // Maven 빌드 실행
+                    // sh 'mvn clean package -DskipTests'
                 }
             }
         }
@@ -49,7 +51,7 @@ pipeline {
         stage('Deployment Image to Update') {
             steps {
                 script {
-                    // Deployment 이미지를 Kubenetes에 배포
+                    // Kubenetes에서 특정 Deployment의 컨테이너 이미지를 업데이트
                     sh "kubectl set image deployment/demo-app-team5-jhk-deployment demo-app-team5-jhk=${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} --namespace=${NAMESPACE}"
                 }
             }
