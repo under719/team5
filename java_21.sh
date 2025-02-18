@@ -1,4 +1,4 @@
-export JAVA_HOME=/home/eva/user/yoon/edu/jdk-21.0.5
+export JAVA_HOME=/usr/local/java21
 export PATH=${JAVA_HOME}/bin:${PATH}
 
 
