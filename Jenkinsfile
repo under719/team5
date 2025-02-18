@@ -16,6 +16,7 @@ pipeline {
         stage('Build with Gradle') {
             steps {
                 script {
+                    sh './java_21.sh'
                     // Gradle 실행권한
                     sh 'chmod +x ./gradlew'
                     // Gradle 빌드 실행
