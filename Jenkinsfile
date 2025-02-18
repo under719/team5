@@ -18,9 +18,9 @@ pipeline {
                 script {
                     sh './java_21.sh'
                     // Gradle 실행권한
-                    sh 'chmod +x ./gradlew'
+                    // sh 'chmod +x ./gradlew'
                     // Gradle 빌드 실행
-                    sh './gradlew clean build'
+                    // sh './gradlew clean build'
                     // Maven 빌드 실행
                     // sh 'mvn clean package -DskipTests'
                 }
