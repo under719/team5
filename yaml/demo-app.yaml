@@ -17,6 +17,7 @@ spec:
       containers:
       - name: demo-app-team5-jhk
         image: k8s-vga-worker1:5000/demo-img-team5-jhk:latest
+        imagePullPolicy: Always #IfNotPresent
         ports:
         - containerPort: 8080
 ---
